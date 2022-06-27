@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>this is admin page</h1>
+    <AdminNavbar />
   </div>
 </template>

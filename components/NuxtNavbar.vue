@@ -4,12 +4,9 @@
       <nav>
         <div class="flex justify-between items-center">
           <div class="w-1/5">
-            <div class="w-32">
+            <div class="w-20">
               <nuxt-link to="/">
-                <img
-                  src="http://pianonguyenanh.vn/wp-content/uploads/2022/02/Logo-NA.jpg"
-                  alt="hình ảnh logo"
-                />
+                <img src="../assets/logo.png" alt="hình ảnh logo" />
               </nuxt-link>
             </div>
           </div>
@@ -39,13 +36,13 @@
                     <polyline points="6 9 12 15 18 9" />
                   </svg>
                 </nuxt-link>
-                <div>
+                <div class="">
                   <ul
-                    class="flex flex-col bg-gray-900 dropdown-menu absolute hidden text-white px-4 py-4"
+                    class="flex flex-col bg-gray-900 bg-opacity-80 dropdown-menu absolute hidden text-white px-4 py-4 transform -translate-x-1/7 ease-linear delay-1000"
                   >
                     <li class="hover:text-red-400 py-2">
-                      <nuxt-link to="/products/PianoUpright"
-                        >Piano Upright</nuxt-link
+                      <nuxt-link to="/products/PianoUpright">
+                        Piano Upright</nuxt-link
                       >
                     </li>
                     <li class="hover:text-red-400 py-2">
@@ -78,7 +75,7 @@
 
               <button
                 id="viewCart"
-                class="w-full px-2 pt-3 hover:text-red-400"
+                class="w-full px-2 pt-3 hover:text-red-400 animate-bounce"
                 @click="ViewCart()"
               >
                 <Cart />
@@ -101,7 +98,7 @@
       class="absolute top-0 w-full h-screen bg-black bg-opacity-40"
     >
       <div
-        class="absolute rounded right-0 w-1/3 h-screen bg-gray-100 top-0 shadow-blue-500 p-5"
+        class="absolute rounded -right-1 w-1/3 h-screen bg-gray-100 top-0 shadow-blue-500 p-5 overflow-scroll"
       >
         <div
           class="absolute right-0 hover:bg-red-500 top-0 cursor-pointer p-1"
@@ -109,65 +106,33 @@
         >
           <CloseCart />
         </div>
+        <!-- {{ cartId }} -->
         <h1 class="text-center text-3xl">GIỎ HÀNG</h1>
+
         <h1 class="text-center pb-5">_________________</h1>
         <div class="px-5">
-          <div class="border-solid-2 border-gray-200 my-1">
-            <div class="py-2 flex justify-between">
-              <img
-                class="w-1/6"
-                src="https://nhaccutiendat.vn/upload/images/Dan-Piano-Yamaha-GB1K-PWH.jpg"
-                alt="piano"
-              />
-
-              <nuxt-link class="w-4/6 px-2" to="#pianosanpham"
-                >Đàn Piano Grand Yamaha C3X
-              </nuxt-link>
-              <button class="w-1/6 p-3 hover:text-gray-300">
-                <delete-item />
-              </button>
-            </div>
-            <h1 class="text-center">
-              15.000.000 <span class="underline">VNĐ</span>
-            </h1>
-          </div>
           <div class="border-solid-2 border-gray-200">
             <div class="py-2 flex justify-between">
+              {{ cart }}
               <img
                 class="w-1/6"
-                src="https://nhaccutiendat.vn/upload/images/Dan-Piano-Yamaha-GB1K-PWH.jpg"
+                src="https://vietthuong.vn/upload/content/images/tuvan/piano/dan-piano-upright-la-gi-ma-hang-van-nguoi-tin-dung2.jpg"
                 alt="piano"
               />
 
               <nuxt-link class="w-4/6 px-2" to="#pianosanpham"
-                >Đàn Piano Grand Yamaha C3X
+                >APOLLO SR5301
               </nuxt-link>
               <button class="w-1/6 p-3 hover:text-gray-300">
                 <delete-item />
               </button>
             </div>
             <h1 class="text-center">
-              15.000.000 <span class="underline">VNĐ</span>
+              57.500.000 <span class="underline">VNĐ</span>
             </h1>
           </div>
-          <!-- <div class="py-2 flex justify-between">
-            <img
-              class="w-1/6"
-              src="https://nhaccutiendat.vn/upload/images/Dan-Piano-Yamaha-GB1K-PWH.jpg"
-              alt="piano"
-            />
-
-            <nuxt-link class="w-4/6 px-2" to="#pianosanpham">
-              Đàn Piano Grand Yamaha C3X
-            </nuxt-link>
-            <button class="w-1/6 p-3 hover:text-gray-300">
-              <delete-item />
-            </button>
-          </div> -->
 
           <div class="text-center">
-            <h1>_______________________</h1>
-            <h1>Tổng: 30.000.000 <span class="underline">VNĐ</span></h1>
             <h1>_______________________</h1>
           </div>
 
@@ -176,9 +141,10 @@
             class="my-3 container mx-auto text-center -right-1/2 my-5"
           >
             <nuxt-link
-              class="text-center font-semibold text-xl bg-red-600 p-2 px-10 rounded-md hover:bg-red-900"
+              class="text-center font-semibold text-xl bg-red-500 p-2 px-10 rounded-md hover:bg-red-400"
               to="/order"
-              >ĐẶT HÀNG</nuxt-link
+              @click="OrderProduct()"
+              >TIẾN HÀNH ĐẶT HÀNG</nuxt-link
             >
           </div>
         </div>
@@ -194,15 +160,20 @@ import DeleteItem from "./icons/DeleteItem.vue";
 import CloseCart from "./icons/CloseCart.vue";
 
 export default {
+  props: {},
   data() {
     return {
       slidebar: false,
+      hihihi: "xin chào",
     };
   },
   methods: {
     ViewCart() {
       //console.log("click close");
       this.slidebar = !this.slidebar;
+    },
+    OrderProduct() {
+      console.log("đặt hàng");
     },
   },
   components: { Fb, Cart, DeleteItem, CloseCart },
