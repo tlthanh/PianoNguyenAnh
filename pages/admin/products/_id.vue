@@ -115,18 +115,12 @@
             />
           </div>
         </div>
-        <nuxt-link
-          class="shadow bg-gray-500 hover:bg-gray-400 focus:shadow-outline focus:outline-none text-white font-bold mx-5 py-2 px-4 rounded"
-          to="/admin/products"
-        >
-          HỦY
+        <nuxt-link to="/admin/products">
+          <el-button type="danger"> HỦY </el-button>
         </nuxt-link>
-        <button
-          class="shadow bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold mx-5 py-2 px-4 rounded"
-          @click="CreateProduct()"
-        >
-          THÊM SẢN PHẨM
-        </button>
+        <el-button type="success" @click="updateproduct()">
+          CẬP NHẬT
+        </el-button>
       </form>
     </div>
   </div>
@@ -147,6 +141,31 @@ export default {
     this.getproduct();
   },
   methods: {
+    updateproduct() {
+      console.log("");
+      axios({
+        method: "PUT",
+        url: "http://127.0.0.1:3006/product",
+      })
+        .then(() => {
+          this.$router.push("/admin/products");
+          this.$notify({
+            title: "Success",
+            message: "Cập nhật Sản Phẩm Thành Công",
+            type: "success",
+            duration: 2000,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$notify({
+            title: "Không Thành Công",
+            message: "Cập nhật Sản Phẩm Không Thành Công",
+            type: "error",
+            duration: 2000,
+          });
+        });
+    },
     getproduct() {
       this.product = [];
       axios

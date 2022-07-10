@@ -79,6 +79,7 @@
                 @click="ViewCart()"
               >
                 <Cart />
+                dsadsa
               </button>
             </div>
             <input

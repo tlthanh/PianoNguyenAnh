@@ -40,11 +40,8 @@
               >
                 Sửa
               </button>
-              <button
-                class="shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold mx-5 py-2 px-4 rounded"
-              >
-                Xóa
-              </button>
+
+              <el-button @click="deleteProduct" type="danger"> Xóa </el-button>
             </td>
           </tr>
         </tbody>
@@ -69,6 +66,34 @@ export default {
   created() {},
 
   methods: {
+    deleteProduct() {
+      console.log("dsadsa");
+      this.$confirm("bạn có muốn xoá sản phẩm ")
+        .then(() => {
+          this.$notify({
+            title: "Thành công",
+            message: "Xoá thành công ",
+            type: "success",
+            duration: 2000,
+          });
+
+          // this.$notify({
+          //   title: "Không Thành công",
+          //   message: "Xoá không thành công ",
+          //   type: "error",
+          //   duration: 2000,
+          // });
+        })
+
+        .catch(() => {
+          this.$notify({
+            title: "Hủy",
+            message: "Xóa đã hủy",
+            type: "info",
+            duration: 2000,
+          });
+        });
+    },
     Seedetails(id) {
       this.$router.push("/admin/products/" + id);
     },
